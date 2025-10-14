@@ -1,4 +1,4 @@
-name: Generate index.html for docs
+﻿name: Generate index.html for docs
 
 on:
   push:
@@ -6,6 +6,9 @@ on:
       - main
     paths:
       - "docs/**"
+
+permissions:
+  contents: write   # ✅ allows committing and pushing changes
 
 jobs:
   build-index:
@@ -22,8 +25,8 @@ jobs:
           echo "<html><head><meta charset='UTF-8'><title>Documentation Index</title></head><body>" >> $OUTPUT
           echo "<h1>Documentation Index</h1><ul>" >> $OUTPUT
           for file in $(find docs -type f -name "*.html" ! -name "index.html" | sort); do
-            filename=$(basename "$file")
-            echo "<li><a href=\"./$filename\">$filename</a></li>" >> $OUTPUT
+            relpath=$(realpath --relative-to=docs "$file")
+            echo "<li><a href=\"./$relpath\">$relpath</a></li>" >> $OUTPUT
           done
           echo "</ul></body></html>" >> $OUTPUT
 
