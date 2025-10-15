@@ -25,8 +25,8 @@ jobs:
           OUTPUT="docs/index.html"
           echo "<!DOCTYPE html>" > $OUTPUT
           echo "<html><head><meta charset='UTF-8'>" >> $OUTPUT
-          echo "<meta name='viewport content='width=device-width', initial-scale=1.0">" >> $OUTPUT
-          echo "<link rel='stylesheet' href='style.css'>"" >> $OUTPUT
+          echo "<meta name='viewport content='width=device-width, initial-scale=1.0>" >> $OUTPUT
+          echo "<link rel='stylesheet' href='style.css'>" >> $OUTPUT
           echo "<title>Documentation Index</title></head><body>" >> $OUTPUT
           echo "<h1>Documentation Index</h1><ul>" >> $OUTPUT
           find docs -type f -name "*.html" ! -name "index.html" | LC_ALL=C sort | while read file; do
